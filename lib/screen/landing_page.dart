@@ -85,13 +85,12 @@ class LandingScreen extends StatelessWidget {
                   ),
                   onPressed: () async {
                     final user = await signInWithGoogle();
-                    // print(user.additionalUserInfo);
-                    debugPrint(user.credential.toString());
+                    debugPrint(user.additionalUserInfo.toString());
                     debugPrint(user.user?.phoneNumber.toString());
                     sendData(
                         user.user!.displayName.toString(),
                         user.user!.email.toString(),
-                        123,
+                        "123",
                         user.user!.emailVerified);
                   },
                   child: const Row(

@@ -25,6 +25,7 @@ Future<UserCredential> signInWithGoogle() async {
 }
 
 signOutGoogle() async {
+  debugPrint("confirm sout");
   await Firebase.initializeApp();
   await FirebaseAuth.instance.signOut();
   await GoogleSignIn()
@@ -33,9 +34,9 @@ signOutGoogle() async {
 }
 
 sendData(
-    String username, String email, int phonenumber, bool isverified) async {
+    String username, String email, String phonenumber, bool isverified) async {
   try {
-    final response = await http.post(
+    await http.post(
       Uri.parse("https://sampann-od59.onrender.com/android_login"),
       body: jsonEncode(
         {
@@ -46,12 +47,14 @@ sendData(
         },
       ),
       headers: {"content-Type": "application/json"},
-      // ).then(
-      //   (value) => Get.off(
-      //     () => const HomePage(),
-      //   ),
+    ).then(
+      (value) => {
+        debugPrint(value.statusCode.toString()),
+        Get.off(
+          () => const HomePage(),
+        )
+      },
     );
-    debugPrint("Response is: ${response.statusCode}");
   } catch (e) {
     debugPrint("Problem: $e");
   }
