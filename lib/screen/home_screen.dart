@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sva_dhruthi/items/card.dart';
-import 'package:sva_dhruthi/items/exercises.dart';
+import 'package:sampann_app/items/card.dart';
+import 'package:sampann_app/items/exercises.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

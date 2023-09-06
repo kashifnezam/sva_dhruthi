@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:sva_dhruthi/screen/splash_screen.dart';
+import 'package:sampann_app/screen/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(fontFamily: 'Alegreya'),
       debugShowCheckedModeBanner: false,
-      title: "Health App",
+      title: "Sampann",
       home: const SplashScreen(),
     );
   }

@@ -1,4 +1,4 @@
-name: sva_dhruthi
+name: sampann_app
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -33,6 +33,14 @@ dependencies:
 
   # Getx importing
   get: ^4.6.5
+  # for Api
+  http: ^1.1.0
+
+  # google sign in
+  # Firebase Plugins and PAckages
+  firebase_auth: ^4.9.0
+  firebase_core: ^2.15.1
+  google_sign_in: ^6.1.5
 
 
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sva_dhruthi/screen/login_screen_email.dart';
+import 'package:sampann_app/authorization/auth.dart';
+import 'login_screen_email.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
@@ -82,7 +83,17 @@ class LandingScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    final user = await signInWithGoogle();
+                    // print(user.additionalUserInfo);
+                    debugPrint(user.credential.toString());
+                    debugPrint(user.user?.phoneNumber.toString());
+                    sendData(
+                        user.user!.displayName.toString(),
+                        user.user!.email.toString(),
+                        123,
+                        user.user!.emailVerified);
+                  },
                   child: const Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -135,7 +146,9 @@ class LandingScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  await signOutGoogle();
+                },
                 child: const Text(
                   "Sign up",
                   style: TextStyle(

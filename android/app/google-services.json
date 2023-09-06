@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "728781754591",
+    "project_id": "sampann-398206",
+    "storage_bucket": "sampann-398206.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728781754591:android:fe8beacf47add83a47996a",
+        "android_client_info": {
+          "package_name": "com.sampann.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728781754591-pqdffgcuql5q0o4d1270frs8cu80sfov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTqCna_jwZ3lT_Xg_AT7L4-ZFdzaYa--Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728781754591-dah482cffohrsqfvrkilcca9srp268o3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
