@@ -33,7 +33,7 @@ signOutGoogle() async {
       .then((value) => debugPrint("signout sucess-----"));
 }
 
-sendData(
+sendSignUpData(
     String username, String email, String phonenumber, bool isverified) async {
   try {
     await http.post(
@@ -53,6 +53,26 @@ sendData(
         Get.off(
           () => const HomePage(),
         )
+      },
+    );
+  } catch (e) {
+    debugPrint("Problem: $e");
+  }
+}
+
+sendQuizData(Map quizData) async {
+  try {
+    await http.post(
+      Uri.parse("https://sampann-od59.onrender.com/setContext"),
+      body: jsonEncode({"QandA": quizData}),
+      headers: {"content-Type": "application/json"},
+    ).then(
+      (value) => {
+        debugPrint(value.statusCode.toString()),
+        debugPrint("Data Sent"),
+        // Get.off(
+        //   () => const HomePage(),
+        // )
       },
     );
   } catch (e) {

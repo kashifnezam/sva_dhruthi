@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sampann_app/authorization/auth.dart';
+import 'package:sampann_app/quiz_screen/quiz.dart';
 import 'login_screen_email.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -87,7 +88,7 @@ class LandingScreen extends StatelessWidget {
                     final user = await signInWithGoogle();
                     debugPrint(user.additionalUserInfo.toString());
                     debugPrint(user.user?.phoneNumber.toString());
-                    sendData(
+                    sendSignUpData(
                         user.user!.displayName.toString(),
                         user.user!.email.toString(),
                         "123",
@@ -146,7 +147,8 @@ class LandingScreen extends StatelessWidget {
                   ),
                 ),
                 onPressed: () async {
-                  await signOutGoogle();
+                  // await signOutGoogle();
+                  Get.to(() => const QuizScreen());
                 },
                 child: const Text(
                   "Sign up",
