@@ -283,8 +283,6 @@ class _QuizScreenState extends State<QuizScreen> {
                       }
 
                       if (quesIndexQuiz >= quizQuestion.length - 1) {
-                        // quesIndexQuiz = 0;
-                        print(myQuizResult);
                         sendQuizData(myQuizResult);
                       } else {
                         quesIndexQuiz++;
