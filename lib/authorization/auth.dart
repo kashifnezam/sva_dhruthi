@@ -50,7 +50,7 @@ sendSignUpData(
     ).then(
       (value) => {
         debugPrint(value.statusCode.toString()),
-        Get.off(
+        Get.to(
           () => const HomePage(),
         )
       },

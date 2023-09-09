@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sampann_app/authorization/auth.dart';
-import 'package:sampann_app/items/quiz_items.dart';
+import 'package:sampann_app/items/question_items.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -35,7 +35,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(
-                            'assets/icons/BGCircle.png'), // Replace with your image path
+                            'assets/icons/BGCircle1.png'), // Replace with your image path
                         fit: BoxFit.fill,
                         // This ensures the image covers the entire body
                       ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sampann_app/authorization/auth.dart';
-import 'package:sampann_app/quiz_screen/quiz.dart';
-import 'login_screen_email.dart';
+import 'package:sampann_app/question_screen/KYC/kyc_screen.dart';
+import 'package:sampann_app/screen/chatbot_screen.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
@@ -52,7 +52,7 @@ class LandingScreen extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  Get.to(() => const LoginScreenEmail());
+                  Get.to(() => const KYCScreen());
                 },
                 child: const Text(
                   "Login with Email",
@@ -148,7 +148,7 @@ class LandingScreen extends StatelessWidget {
                 ),
                 onPressed: () async {
                   // await signOutGoogle();
-                  Get.to(() => const QuizScreen());
+                  Get.to(() => const ChatBot());
                 },
                 child: const Text(
                   "Sign up",

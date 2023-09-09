@@ -1,3 +1,5 @@
+// ---------------  Quiz Part -------------------
+
 List quizQuestion = [
   // physical
   "How would you describe your natural body build?",
@@ -89,6 +91,55 @@ List quizOptions = [
   "Steady not quick to get hungry",
 ];
 
-// ------Logic for Api-----------
+Map<String, String> myQuizResult = {}; // just for database to send
 
-Map<String, String> myQuizResult = {};
+//  ---------------------- KYC Part   -----------------------------
+
+List kycQuestions = [
+  "Select your comfortable language",
+  "Select your gender",
+  "What is your age group?",
+  "Why are you here?",
+  "Have you already consulted any doctor?",
+  "What Diet do you follow?",
+];
+
+List kycOptions = [
+  // 1------
+  "English",
+  "Hindi",
+  "Kannada",
+  "Tamil",
+  "Telugu",
+
+  // 2----
+  "Male",
+  "Female",
+  "Others/Rather not say",
+
+  // 3----
+  "14-25",
+  "26-35",
+  "35-45",
+  "46-55",
+  "56-65",
+  "65+",
+
+  // 4-----
+  "Diabetes",
+  "Hyper Thyroid",
+  "Hypo Thyroid",
+  "Low Blood Pressure",
+  "High Blood Pressure",
+  "Others",
+
+  // 5-----
+  "Yes",
+  "No",
+
+  // 6---
+  "Vegetarian",
+  "Non-Vegetarian",
+  "Gluten free",
+  "Dairy free",
+];
