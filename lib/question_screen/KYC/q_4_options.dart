@@ -10,7 +10,6 @@ class KYC4Option extends StatefulWidget {
   State<KYC4Option> createState() => _KYC4OptionState();
 }
 
-String _selected = "I have...";
 bool isDrop = false;
 
 class _KYC4OptionState extends State<KYC4Option> {
@@ -62,7 +61,7 @@ class _KYC4OptionState extends State<KYC4Option> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      _selected,
+                      currValue,
                       style: const TextStyle(
                         fontFamily: "AlegreyaSans",
                         fontWeight: FontWeight.w500,
@@ -104,7 +103,7 @@ class _KYC4OptionState extends State<KYC4Option> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _selected = kycOptions[optionIndexKYC];
+                        currValue = kycOptions[optionIndexKYC];
                         isDrop = false;
                       });
                     },
@@ -124,7 +123,7 @@ class _KYC4OptionState extends State<KYC4Option> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _selected = kycOptions[optionIndexKYC + 1];
+                        currValue = kycOptions[optionIndexKYC + 1];
                         isDrop = false;
                       });
                     },
@@ -144,7 +143,7 @@ class _KYC4OptionState extends State<KYC4Option> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _selected = kycOptions[optionIndexKYC + 2];
+                        currValue = kycOptions[optionIndexKYC + 2];
                         isDrop = false;
                       });
                     },
@@ -164,7 +163,7 @@ class _KYC4OptionState extends State<KYC4Option> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _selected = kycOptions[optionIndexKYC + 3];
+                        currValue = kycOptions[optionIndexKYC + 3];
                         isDrop = false;
                       });
                     },
@@ -184,7 +183,7 @@ class _KYC4OptionState extends State<KYC4Option> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _selected = kycOptions[optionIndexKYC + 4];
+                        currValue = kycOptions[optionIndexKYC + 4];
                         isDrop = false;
                       });
                     },
@@ -204,7 +203,7 @@ class _KYC4OptionState extends State<KYC4Option> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _selected = kycOptions[optionIndexKYC + 5];
+                        currValue = kycOptions[optionIndexKYC + 5];
                         isDrop = false;
                       });
                     },
@@ -232,8 +231,9 @@ class _KYC4OptionState extends State<KYC4Option> {
               ),
               height: 222,
               width: 321,
-              child: const TextField(
-                style: TextStyle(
+              child: TextField(
+                controller: healthMsg,
+                style: const TextStyle(
                   fontFamily: "AlegreyaSans",
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
@@ -241,7 +241,7 @@ class _KYC4OptionState extends State<KYC4Option> {
                 ),
                 maxLines: 10,
                 maxLength: 500,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   counterText: "",
                   contentPadding: EdgeInsets.all(10),
                   border: InputBorder.none,

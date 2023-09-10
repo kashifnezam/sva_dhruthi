@@ -91,8 +91,6 @@ List quizOptions = [
   "Steady not quick to get hungry",
 ];
 
-Map<String, String> myQuizResult = {}; // just for database to send
-
 //  ---------------------- KYC Part   -----------------------------
 
 List kycQuestions = [
@@ -126,6 +124,7 @@ List kycOptions = [
   "65+",
 
   // 4-----
+
   "Diabetes",
   "Hyper Thyroid",
   "Hypo Thyroid",
@@ -143,3 +142,7 @@ List kycOptions = [
   "Gluten free",
   "Dairy free",
 ];
+
+// just for database to send
+Map<String, String> myQuizResult = {};
+Map<String, dynamic> myKYCResult = {};

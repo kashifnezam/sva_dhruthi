@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sampann_app/authorization/auth.dart';
 
 import 'package:sampann_app/items/question_items.dart';
 
@@ -16,6 +17,11 @@ class KYCScreen extends StatefulWidget {
   State<KYCScreen> createState() => _KYCScreenState();
 }
 
+// to check selected
+bool isSelected = false;
+
+// for text are in Q4.
+TextEditingController healthMsg = TextEditingController();
 // Radio button to change
 List myOptions = ["a", "b", "c"];
 String currValue = "";
@@ -108,16 +114,16 @@ class _KYCScreenState extends State<KYCScreen> {
                         color: Colors.white)),
               ),
 
-              // -----Q1----
+              // -----Q1 to Q6----
               if (quesIndexKYC == 0) KYC1Option(optionIndexKYC),
               if (quesIndexKYC == 1) KYC2Option(optionIndexKYC),
               if (quesIndexKYC == 2) KYC3Option(optionIndexKYC),
               if (quesIndexKYC == 3) KYC4Option(optionIndexKYC),
               if (quesIndexKYC == 4) KYC5Option(optionIndexKYC),
               if (quesIndexKYC == 5) KYC6Option(optionIndexKYC),
-              customBtn(),
 
               //-----------Button tp next/submit------------
+              customBtn(),
             ],
           ),
         ),
@@ -139,43 +145,86 @@ class _KYCScreenState extends State<KYCScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(60))),
             height: 60,
             width: 261,
-            child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: const MaterialStatePropertyAll(Colors.white),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(13.0),
+            child: isSelected
+                ? ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: const MaterialStatePropertyAll(
+                          Color.fromRGBO(222, 228, 237, 1)),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(13.0),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                onPressed: () {
-                  setState(() {
-                    quesIndexKYC++;
-                    if (quesIndexKYC == 1) {
-                      optionIndexKYC = 5;
-                    } else if (quesIndexKYC == 2) {
-                      optionIndexKYC = 8;
-                    } else if (quesIndexKYC == 3) {
-                      optionIndexKYC = 14;
-                    } else if (quesIndexKYC == 4) {
-                      optionIndexKYC = 20;
-                    } else if (quesIndexKYC == 5) {
-                      optionIndexKYC = 22;
-                    } else {
-                      optionIndexKYC = 0;
-                    }
-                  });
-                  print(quesIndexKYC);
-                },
-                child: const Text(
-                  "Submit",
-                  style: TextStyle(
-                    fontFamily: "AlegreyaSans",
-                    fontWeight: FontWeight.w500,
-                    fontSize: 25,
-                    color: Color.fromRGBO(8, 78, 140, 1),
-                  ),
-                )),
+                    onPressed: null,
+                    child: const Text(
+                      "Next",
+                      style: TextStyle(
+                        fontFamily: "AlegreyaSans",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 25,
+                        color: Color.fromRGBO(210, 210, 210, 1),
+                      ),
+                    ))
+                : ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          const MaterialStatePropertyAll(Colors.white),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(13.0),
+                        ),
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        myKYCResult[kycQuestions[quesIndexKYC]] = currValue;
+                        if (quesIndexKYC == 3) {
+                          myKYCResult[kycQuestions[quesIndexKYC]] = [
+                            currValue,
+                            healthMsg.text.toString()
+                          ];
+                        }
+                        print(myKYCResult);
+                        isSelected = false;
+                        quesIndexKYC++;
+                        if (quesIndexKYC == 1) {
+                          optionIndexKYC = 5;
+                        } else if (quesIndexKYC == 2) {
+                          optionIndexKYC = 8;
+                        } else if (quesIndexKYC == 3) {
+                          currValue = "I have...";
+                          optionIndexKYC = 14;
+                        } else if (quesIndexKYC == 4) {
+                          optionIndexKYC = 20;
+                        } else if (quesIndexKYC == 5) {
+                          optionIndexKYC = 22;
+                        } else {
+                          sendQuizData(myKYCResult);
+                          optionIndexKYC = 0;
+                          quesIndexKYC = 0;
+                        }
+                      });
+                    },
+                    child: (quesIndexKYC == 5)
+                        ? const Text(
+                            "Submit",
+                            style: TextStyle(
+                              fontFamily: "AlegreyaSans",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 25,
+                              color: Color.fromRGBO(8, 78, 140, 1),
+                            ),
+                          )
+                        : const Text(
+                            "Next",
+                            style: TextStyle(
+                              fontFamily: "AlegreyaSans",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 25,
+                              color: Color.fromRGBO(8, 78, 140, 1),
+                            ),
+                          )),
           ),
         ],
       ),

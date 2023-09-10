@@ -157,7 +157,7 @@ class _ChatBotState extends State<ChatBot> {
               ),
             ),
           ),
-          Card()
+          const Card()
         ],
       ),
     );
