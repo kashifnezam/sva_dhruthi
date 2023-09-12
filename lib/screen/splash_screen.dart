@@ -1,9 +1,14 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampann_app/screen/landing_page.dart';
+import 'package:sampann_app/question_screen/Quiz/quiz.dart';
+import 'package:sampann_app/screen/home_screen.dart';
+import 'package:sampann_app/screen/landing_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+String token = "";
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -12,13 +17,44 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2), () {
-      Get.off(() => const LandingScreen());
-    });
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      Timer(const Duration(seconds: 2), () {
+        Get.off(() => const HomePage());
+      });
+    } else {
+      getToken();
+      if (token != "") {
+        Timer(const Duration(seconds: 2), () {
+        Get.off(() => const LandingScreen());
+      });
+      }else{
+        Timer(const Duration(seconds: 2), () {
+        Get.off(() => const QuizScreen());
+      });
+      }
+    }
   }
+
+// --------- Generate Token------------
+  Future<void> generateToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("token", token);
+  }
+
+// --------- Get Token------------
+  Future<void> getToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    token = prefs.getString("token")!;
+  } 
+
+  //  -------Refresh Token
+  //---
+  //--
 
   @override
   Widget build(BuildContext context) {

@@ -16,6 +16,7 @@ String currValue = "";
 
 int optionIndexQuiz = 0;
 int quesIndexQuiz = 0;
+bool isSelected = false;
 
 class _QuizScreenState extends State<QuizScreen> {
   @override
@@ -123,6 +124,7 @@ class _QuizScreenState extends State<QuizScreen> {
                 onTap: () {
                   setState(() {
                     currValue = myOptions[0];
+                    isSelected = true;
                   });
                 },
                 child: Container(
@@ -143,6 +145,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         onChanged: ((value) {
                           setState(() {
                             currValue = value.toString();
+                            isSelected = true;
                           });
                         }),
                       ),
@@ -170,6 +173,7 @@ class _QuizScreenState extends State<QuizScreen> {
                 onTap: () {
                   setState(() {
                     currValue = myOptions[1];
+                    isSelected = true;
                   });
                 },
                 child: Container(
@@ -190,6 +194,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         onChanged: ((value) {
                           setState(() {
                             currValue = value.toString();
+                            isSelected = true;
                           });
                         }),
                       ),
@@ -215,6 +220,7 @@ class _QuizScreenState extends State<QuizScreen> {
                 onTap: () {
                   setState(() {
                     currValue = myOptions[2];
+                    isSelected = true;
                   });
                 },
                 child: Container(
@@ -235,6 +241,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         onChanged: ((value) {
                           setState(() {
                             currValue = value.toString();
+                            isSelected = true;
                           });
                         }),
                       ),
@@ -262,55 +269,80 @@ class _QuizScreenState extends State<QuizScreen> {
                     borderRadius: BorderRadius.all(Radius.circular(60))),
                 height: 60,
                 width: 261,
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: const MaterialStatePropertyAll(
-                      Color.fromRGBO(8, 78, 140, 1),
-                    ),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                      ),
-                    ),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      myQuizResult[(quesIndexQuiz + 1).toString()] = currValue;
-                      if (optionIndexQuiz >= quizOptions.length - 3) {
-                        // optionIndexQuiz = 0;
-                      } else {
-                        optionIndexQuiz += 3;
-                      }
-
-                      if (quesIndexQuiz >= quizQuestion.length - 1) {
-                        sendQuizData(myQuizResult);
-                      } else {
-                        quesIndexQuiz++;
-                        currValue = "";
-                      }
-                    });
-                    debugPrint("Curent value : $currValue");
-                  },
-                  child: quesIndexQuiz == quizQuestion.length - 1
-                      ? const Text(
-                          "Submit",
-                          style: TextStyle(
-                            fontFamily: "AlegreyaSans",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 25,
-                            color: Color.fromRGBO(255, 255, 255, 1),
+                child: !isSelected
+                    ? ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: const MaterialStatePropertyAll(
+                            Color.fromRGBO(222, 228, 237, 1),
                           ),
-                        )
-                      : const Text(
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(13.0),
+                            ),
+                          ),
+                        ),
+                        onPressed: null,
+                        child: const Text(
                           "Next",
                           style: TextStyle(
                             fontFamily: "AlegreyaSans",
                             fontWeight: FontWeight.w500,
                             fontSize: 25,
-                            color: Color.fromRGBO(255, 255, 255, 1),
+                            color: Color.fromRGBO(210, 210, 210, 1),
                           ),
                         ),
-                ),
+                      )
+                    : ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: const MaterialStatePropertyAll(
+                            Color.fromRGBO(8, 78, 140, 1),
+                          ),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(13.0),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            myQuizResult[(quesIndexQuiz + 1).toString()] =
+                                currValue;
+                            if (optionIndexQuiz >= quizOptions.length - 3) {
+                            } else {
+                              optionIndexQuiz += 3;
+                            }
+
+                            // -------Sending Quiz Data------------
+                            if (quesIndexQuiz >= quizQuestion.length - 1) {
+                              sendQuizData(myQuizResult);
+                            } else {
+                              quesIndexQuiz++;
+                              currValue = "";
+                            }
+                          });
+                          debugPrint("Curent value : $currValue");
+                          isSelected = false;
+                        },
+                        child: quesIndexQuiz == quizQuestion.length - 1
+                            ? const Text(
+                                "Submit",
+                                style: TextStyle(
+                                  fontFamily: "AlegreyaSans",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 25,
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                ),
+                              )
+                            : const Text(
+                                "Next",
+                                style: TextStyle(
+                                  fontFamily: "AlegreyaSans",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 25,
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                ),
+                              ),
+                      ),
               ),
             ],
           ),

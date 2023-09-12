@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sampann_app/authorization/auth.dart';
-
 import 'package:sampann_app/items/question_items.dart';
 
 import 'q_1_options.dart';
@@ -185,8 +183,8 @@ class _KYCScreenState extends State<KYCScreen> {
                             healthMsg.text.toString()
                           ];
                         }
-                        print(myKYCResult);
-                        isSelected = false;
+                        // print(myKYCResult);
+                        // isSelected = false;
                         quesIndexKYC++;
                         if (quesIndexKYC == 1) {
                           optionIndexKYC = 5;
@@ -200,7 +198,7 @@ class _KYCScreenState extends State<KYCScreen> {
                         } else if (quesIndexKYC == 5) {
                           optionIndexKYC = 22;
                         } else {
-                          sendQuizData(myKYCResult);
+                          // sendQuizData(myKYCResult);
                           optionIndexKYC = 0;
                           quesIndexKYC = 0;
                         }
