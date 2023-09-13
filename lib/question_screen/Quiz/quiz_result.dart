@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sampann_app/question_screen/Quiz/quiz.dart';
+import 'package:sampann_app/screen/chatbot/chatbot_loading.dart';
 
 class QuizResult extends StatefulWidget {
   const QuizResult({super.key});
@@ -10,6 +13,12 @@ class QuizResult extends StatefulWidget {
 class _QuizResultState extends State<QuizResult> {
   @override
   Widget build(BuildContext context) {
+    Map result = Get.arguments;
+
+    String kapha = result["Kapha"] ?? "0";
+    String vatta = result["Vata"] ?? "0";
+    String pitta = result["Pitta"] ?? "0";
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -40,12 +49,12 @@ class _QuizResultState extends State<QuizResult> {
             const SizedBox(
               height: 35,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(
                   children: [
-                    Text(
+                    const Text(
                       "VATA",
                       style: TextStyle(
                         fontFamily: "AlegreyaSans",
@@ -55,30 +64,30 @@ class _QuizResultState extends State<QuizResult> {
                       ),
                     ),
                     Text(
-                      "65%",
-                      style: TextStyle(
+                      "${vatta.toString().split(".").first}%",
+                      style: const TextStyle(
                         fontFamily: "AlegreyaSans",
                         fontWeight: FontWeight.w400,
                         fontSize: 24,
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 6,
                     ),
-                    Image(
+                    const Image(
                       width: 89,
                       height: 112,
                       image: AssetImage("assets/icons/q3Result.png"),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 13,
                 ),
                 Column(
                   children: [
-                    Text(
+                    const Text(
                       "PITTA",
                       style: TextStyle(
                         fontFamily: "AlegreyaSans",
@@ -88,31 +97,31 @@ class _QuizResultState extends State<QuizResult> {
                       ),
                     ),
                     Text(
-                      "15%",
-                      style: TextStyle(
+                      "${pitta.toString().split(".").first}%",
+                      style: const TextStyle(
                         fontFamily: "AlegreyaSans",
                         fontWeight: FontWeight.w400,
                         fontSize: 24,
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 6,
                     ),
-                    Image(
+                    const Image(
                       width: 89,
                       height: 112,
                       image: AssetImage("assets/icons/q2Result.png"),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 13,
                 ),
                 Column(
                   children: [
-                    Text(
-                      "KAFFA",
+                    const Text(
+                      "KAPHA",
                       style: TextStyle(
                         fontFamily: "AlegreyaSans",
                         fontWeight: FontWeight.w400,
@@ -121,18 +130,18 @@ class _QuizResultState extends State<QuizResult> {
                       ),
                     ),
                     Text(
-                      "20%",
-                      style: TextStyle(
+                      "${kapha.toString().split(".").first}%",
+                      style: const TextStyle(
                         fontFamily: "AlegreyaSans",
                         fontWeight: FontWeight.w400,
                         fontSize: 24,
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 6,
                     ),
-                    Image(
+                    const Image(
                       width: 89,
                       height: 112,
                       image: AssetImage("assets/icons/q1Result.png"),
@@ -200,7 +209,7 @@ class _QuizResultState extends State<QuizResult> {
                         ),
                       ),
                     ),
-                    onPressed: null,
+                    onPressed: () => Get.to(() => const ChatBotLoading()),
                     child: const Text(
                       "Continue",
                       style: TextStyle(
@@ -215,14 +224,19 @@ class _QuizResultState extends State<QuizResult> {
             const SizedBox(
               height: 20,
             ),
-            const Text(
-              "<   Take Quiz Again",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: "AlegreyaSans",
-                fontWeight: FontWeight.w400,
-                fontSize: 14,
-                color: Colors.black,
+            GestureDetector(
+              onTap: () {
+                Get.to(() => const QuizScreen());
+              },
+              child: const Text(
+                "<   Take Quiz Again",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "AlegreyaSans",
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                  color: Colors.black,
+                ),
               ),
             ),
           ],

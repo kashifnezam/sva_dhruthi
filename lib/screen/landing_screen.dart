@@ -1,10 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sampann_app/authorization/auth.dart';
-import 'package:sampann_app/question_screen/Quiz/quiz.dart';
-import 'package:sampann_app/question_screen/Quiz/quiz_result.dart';
-import 'package:sampann_app/screen/chatbot/chatbot_screen.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
@@ -54,10 +49,7 @@ class LandingScreen extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  sendQuizData({
-                    "QandA": {"1": "a", "2": "b", "3": "c"}
-                  });
-                  // Get.to(() => const ChatBot());
+                  // print(token.toString());
                 },
                 child: const Text(
                   "Login with Email",
@@ -91,13 +83,13 @@ class LandingScreen extends StatelessWidget {
                   ),
                   onPressed: () async {
                     final user = await signInWithGoogle();
-                    // debugPrint(user.additionalUserInfo.toString());
-                    // debugPrint(user.user?.phoneNumber.toString());
-                    //   sendSignUpData(
-                    //       user.user!.displayName.toString(),
-                    //       user.user!.email.toString(),
-                    //       "123",
-                    //       user.user!.emailVerified);
+                    debugPrint(user.additionalUserInfo.toString());
+                    debugPrint(user.user?.phoneNumber.toString());
+                    sendSignUpData(
+                        user.user!.displayName.toString(),
+                        user.user!.email.toString(),
+                        user.user!.phoneNumber.toString(),
+                        user.user!.emailVerified);
                   },
                   child: const Row(
                     mainAxisSize: MainAxisSize.max,
@@ -153,7 +145,8 @@ class LandingScreen extends StatelessWidget {
                 ),
                 onPressed: () async {
                   await signOutGoogle();
-                  Get.to(() => const QuizResult());
+                  removeToken();
+                  debugPrint("token Removed");
                 },
                 child: const Text(
                   "Sign up",

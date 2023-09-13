@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sampann_app/authorization/auth.dart';
 import 'package:sampann_app/items/question_items.dart';
+import 'package:sampann_app/question_screen/Quiz/quiz_result.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -19,6 +21,27 @@ int quesIndexQuiz = 0;
 bool isSelected = false;
 
 class _QuizScreenState extends State<QuizScreen> {
+  // Submit Button for Quiz result
+  bool isLoading = false;
+  getQuizResult() async {
+    setState(() {
+      isLoading = true;
+    });
+    await sendQuizData(myQuizResult);
+    setState(() {
+      isLoading = false;
+      optionIndexQuiz = 0;
+      quesIndexQuiz = 0;
+      currValue = "";
+    });
+    if (mapResponse.isNotEmpty) {
+      Get.to(() => const QuizResult(),
+          arguments: mapResponse["analysis_results"]);
+    } else {
+      Get.to(() => const QuizScreen());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -282,15 +305,17 @@ class _QuizScreenState extends State<QuizScreen> {
                           ),
                         ),
                         onPressed: null,
-                        child: const Text(
-                          "Next",
-                          style: TextStyle(
-                            fontFamily: "AlegreyaSans",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 25,
-                            color: Color.fromRGBO(210, 210, 210, 1),
-                          ),
-                        ),
+                        child: isLoading
+                            ? const CircularProgressIndicator()
+                            : const Text(
+                                "Next",
+                                style: TextStyle(
+                                  fontFamily: "AlegreyaSans",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 25,
+                                  color: Color.fromRGBO(210, 210, 210, 1),
+                                ),
+                              ),
                       )
                     : ElevatedButton(
                         style: ButtonStyle(
@@ -314,7 +339,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
                             // -------Sending Quiz Data------------
                             if (quesIndexQuiz >= quizQuestion.length - 1) {
-                              sendQuizData(myQuizResult);
+                              getQuizResult();
                             } else {
                               quesIndexQuiz++;
                               currValue = "";
@@ -324,15 +349,17 @@ class _QuizScreenState extends State<QuizScreen> {
                           isSelected = false;
                         },
                         child: quesIndexQuiz == quizQuestion.length - 1
-                            ? const Text(
-                                "Submit",
-                                style: TextStyle(
-                                  fontFamily: "AlegreyaSans",
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 25,
-                                  color: Color.fromRGBO(255, 255, 255, 1),
-                                ),
-                              )
+                            ? isLoading
+                                ? const CircularProgressIndicator()
+                                : const Text(
+                                    "Submit",
+                                    style: TextStyle(
+                                      fontFamily: "AlegreyaSans",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 25,
+                                      color: Color.fromRGBO(255, 255, 255, 1),
+                                    ),
+                                  )
                             : const Text(
                                 "Next",
                                 style: TextStyle(

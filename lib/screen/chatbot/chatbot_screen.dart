@@ -90,7 +90,7 @@ class _ChatBotState extends State<ChatBot> {
                 ),
               ),
 
-            //  ------Info incase no msg -------------
+            //  ------Info in case no msg -------------
             if (message.isEmpty)
               Expanded(
                 child: ListView(

@@ -5,13 +5,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
-import 'package:sampann_app/question_screen/Quiz/quiz.dart';
-import 'package:sampann_app/screen/chatbot/chatbot_screen.dart';
 import 'package:sampann_app/screen/chatbot/chatbot_work.dart';
-import 'package:sampann_app/screen/splash_screen.dart';
+import 'package:sampann_app/screen/home_screen.dart';
+import 'package:sampann_app/screen/landing_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 late Map mapResponse; //After quiz we are getting the map Response
-
+String token = '';
 // ---------Sign in with Google------\
 
 Future<UserCredential> signInWithGoogle() async {
@@ -62,9 +62,7 @@ sendSignUpData(
     ).then(
       (value) => {
         debugPrint(value.statusCode.toString()),
-        Get.to(
-          () => const QuizScreen(),
-        )
+        if (value.statusCode == 200) Get.to(() => const HomePage()),
       },
     );
   } catch (e) {
@@ -72,7 +70,7 @@ sendSignUpData(
   }
 }
 
-// ------------------Quix data to send----------------
+// ------------------Quiz data to send----------------
 
 sendQuizData(Map quizData) async {
   try {
@@ -87,20 +85,18 @@ sendQuizData(Map quizData) async {
         mapResponse = jsonDecode(value.body),
         token = mapResponse["access_token"],
         // print("body: ${mapResponse["access_token"]}"),
-        Get.to(
-          () => const ChatBot(),
-        )
+        saveToken(token),
       },
     );
   } catch (e) {
     debugPrint("Problem: $e");
   }
+  return mapResponse;
 }
 
 // --------Bot Response-----------------
 
 getBotResponse({required String msg}) async {
-  print("message : $msg");
   try {
     await http.post(
       Uri.parse("https://sampann-od59.onrender.com/getBotResponse"),
@@ -118,19 +114,29 @@ getBotResponse({required String msg}) async {
             mapResponse = await jsonDecode(value.body),
             msg = mapResponse["response"].toString(),
             await addBotMessage(msg: msg),
-            print(jsonEncode(value.body)),
           }
-        // Get.to(
-        //   () => const HomePage(),
-        // )
-
-        // signInWithGoogle(),
+        else
+          {
+            Get.to(() => const LandingScreen()),
+          }
       },
     );
   } catch (e) {
     debugPrint("Problem: $e");
-    // Get.to(
-    //   () => const HomePage(),
-    // )
+    Get.to(
+      () => const LandingScreen(),
+    );
   }
+}
+
+// ----------Save Token----------
+Future<void> saveToken(String token) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString("token", token);
+}
+
+removeToken() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  // Remove data for the 'counter' key.
+  await prefs.remove('token');
 }

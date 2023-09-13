@@ -11,22 +11,32 @@ class IconsFile extends StatelessWidget {
         InkWell(
           onTap: () {},
           child: Card(
+            elevation: 0.3,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image(
-                height: 50,
+                height: 35,
+                width: 35,
                 image: AssetImage(iconAdd),
               ),
             ),
           ),
         ),
+        const SizedBox(
+          height: 5,
+        ),
         Text(
           textAlign: TextAlign.center,
           caption,
-          style: TextStyle(fontSize: 12, color: Colors.blue[800]),
+          style: const TextStyle(
+            fontFamily: "AlegreyaSans",
+            fontSize: 12,
+            color: Color.fromRGBO(8, 78, 140, 1),
+            fontWeight: FontWeight.w400,
+          ),
         ),
       ],
     );
