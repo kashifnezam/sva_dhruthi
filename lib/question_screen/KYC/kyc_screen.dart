@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sampann_app/debug_page/my_sidebar.dart';
 import 'package:sampann_app/items/question_items.dart';
-
 import 'q_1_options.dart';
 import 'q_2_options.dart';
 import 'q_3_options.dart';
@@ -201,6 +202,7 @@ class _KYCScreenState extends State<KYCScreen> {
                           // sendQuizData(myKYCResult);
                           optionIndexKYC = 0;
                           quesIndexKYC = 0;
+                          Get.to(() => const HomeWithSideBar());
                         }
                       });
                     },

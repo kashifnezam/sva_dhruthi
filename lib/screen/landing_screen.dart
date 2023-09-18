@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sampann_app/authorization/auth.dart';
+import 'package:sampann_app/screen/bottom_navigation.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
@@ -50,6 +52,7 @@ class LandingScreen extends StatelessWidget {
                 ),
                 onPressed: () {
                   // print(token.toString());
+                  Get.to(() => const MyNavigation());
                 },
                 child: const Text(
                   "Login with Email",

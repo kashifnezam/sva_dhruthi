@@ -5,8 +5,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
+import 'package:sampann_app/question_screen/KYC/kyc_screen.dart';
 import 'package:sampann_app/screen/chatbot/chatbot_work.dart';
-import 'package:sampann_app/screen/home_screen.dart';
 import 'package:sampann_app/screen/landing_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -58,11 +58,14 @@ sendSignUpData(
           "isEmailVerified": isverified,
         },
       ),
-      headers: {"content-Type": "application/json"},
+      headers: {
+        "content-Type": "application/json",
+        "Authorization": "Bearer $token"
+      },
     ).then(
       (value) => {
         debugPrint(value.statusCode.toString()),
-        if (value.statusCode == 200) Get.to(() => const HomePage()),
+        if (value.statusCode == 200) Get.to(() => const KYCScreen()),
       },
     );
   } catch (e) {
@@ -135,6 +138,7 @@ Future<void> saveToken(String token) async {
   await prefs.setString("token", token);
 }
 
+// ----------Remove token-------
 removeToken() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   // Remove data for the 'counter' key.
