@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sampann_app/items/question_items.dart';
-import 'package:sampann_app/question_screen/KYC/kyc_screen.dart';
+import 'package:sampann_app/screen/question_screen/KYC/kyc_screen.dart';
 
 //  class name mean: {Q1 --> KYC1,  Q2--> KYC2} #like that----
 class KYC4Option extends StatefulWidget {

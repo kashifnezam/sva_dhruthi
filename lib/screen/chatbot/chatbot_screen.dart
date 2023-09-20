@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sampann_app/authorization/auth.dart';
+import 'package:sampann_app/services/auth.dart';
 import 'package:sampann_app/screen/chatbot/chatbot_work.dart';
 import 'package:sampann_app/screen/chatbot/message_card.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampann_app/question_screen/Quiz/quiz.dart';
+import 'package:sampann_app/screen/question_screen/Quiz/quiz.dart';
 import 'package:sampann_app/screen/chatbot/chatbot_loading.dart';
 
 class QuizResult extends StatefulWidget {

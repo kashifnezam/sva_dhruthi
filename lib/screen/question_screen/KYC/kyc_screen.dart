@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampann_app/debug_page/my_sidebar.dart';
+import 'package:sampann_app/screen/home_with_sidebar.dart';
 import 'package:sampann_app/items/question_items.dart';
 import 'q_1_options.dart';
 import 'q_2_options.dart';

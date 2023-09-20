@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sampann_app/authorization/auth.dart';
+import 'package:sampann_app/services/auth.dart';
 import 'package:sampann_app/screen/landing_screen.dart';
 
 class Sidebar extends StatefulWidget {

@@ -5,7 +5,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
-import 'package:sampann_app/question_screen/KYC/kyc_screen.dart';
+import 'package:sampann_app/screen/home_with_sidebar.dart';
+import 'package:sampann_app/screen/question_screen/KYC/kyc_screen.dart';
 import 'package:sampann_app/screen/chatbot/chatbot_work.dart';
 import 'package:sampann_app/screen/landing_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -65,7 +66,14 @@ sendSignUpData(
     ).then(
       (value) => {
         debugPrint(value.statusCode.toString()),
-        if (value.statusCode == 200) Get.to(() => const KYCScreen()),
+        if (value.statusCode == 200)
+          {
+            mapResponse = jsonDecode(value.body),
+            token = mapResponse["new_access_token"],
+            print("body: ${mapResponse["new_access_token"]}"),
+            saveToken(token),
+            Get.to(() => const KYCScreen()),
+          },
       },
     );
   } catch (e) {
@@ -85,8 +93,11 @@ sendQuizData(Map quizData) async {
       (value) => {
         debugPrint(value.statusCode.toString()),
         debugPrint("Data Sent"),
+
+        // Getting Token
         mapResponse = jsonDecode(value.body),
         token = mapResponse["access_token"],
+
         // print("body: ${mapResponse["access_token"]}"),
         saveToken(token),
       },
@@ -120,13 +131,20 @@ getBotResponse({required String msg}) async {
           }
         else
           {
-            Get.to(() => const LandingScreen()),
+            if (FirebaseAuth.instance.currentUser != null)
+              {
+                Get.off(() => const HomeWithSideBar()),
+              }
+            else
+              {
+                Get.off(() => const LandingScreen()),
+              }
           }
       },
     );
   } catch (e) {
     debugPrint("Problem: $e");
-    Get.to(
+    Get.off(
       () => const LandingScreen(),
     );
   }

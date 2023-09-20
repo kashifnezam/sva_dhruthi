@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampann_app/authorization/auth.dart';
+import 'package:sampann_app/services/auth.dart';
 import 'package:sampann_app/items/question_items.dart';
-import 'package:sampann_app/question_screen/Quiz/quiz_result.dart';
+import 'package:sampann_app/screen/question_screen/Quiz/quiz_result.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
