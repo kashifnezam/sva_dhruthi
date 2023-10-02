@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampann_app/screen/login_screen_pass.dart';
+import 'package:sampann_app/screen/authentication/login_screen_pass.dart';
 
 class LoginScreenEmail extends StatelessWidget {
   const LoginScreenEmail({super.key});

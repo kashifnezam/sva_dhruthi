@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampann_app/screen/home_with_sidebar.dart';
+import 'package:sampann_app/screen/dashboard/home_with_sidebar.dart';
 import 'package:sampann_app/screen/question_screen/Quiz/quiz.dart';
-import 'package:sampann_app/screen/landing_screen.dart';
+import 'package:sampann_app/screen/authentication/landing_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../services/auth.dart';
+import '../../services/auth.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

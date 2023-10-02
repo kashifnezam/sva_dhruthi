@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sampann_app/screen/dashboard/old_homescreen.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard(
-      {super.key,
-      required this.title,
-      required this.subTitle,
-      required this.bgColor,
-      required this.stickerAdd,
-      required this.bgBtnColor,
-      required this.btnText,
-      required this.isIcon});
   final String title;
   final String subTitle;
   final Color bgColor;
@@ -17,6 +10,20 @@ class CustomCard extends StatelessWidget {
   final String btnText;
   final String stickerAdd;
   final bool isIcon;
+  final VoidCallback onPress;
+
+  const CustomCard({
+    super.key,
+    required this.title,
+    required this.subTitle,
+    required this.bgColor,
+    required this.stickerAdd,
+    required this.bgBtnColor,
+    required this.btnText,
+    required this.isIcon,
+    required this.onPress,
+  });
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,20 +36,21 @@ class CustomCard extends StatelessWidget {
         elevation: 0.5,
         color: bgColor,
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(25.0),
           child: Row(
             children: [
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       title,
                       style: const TextStyle(
                         fontFamily: "AlegreyaSans",
-                        fontSize: 20,
+                        fontSize: 10,
                         color: Color.fromRGBO(37, 51, 52, 1),
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                     Text(
@@ -51,7 +59,7 @@ class CustomCard extends StatelessWidget {
                         fontFamily: "AlegreyaSans",
                         fontSize: 12,
                         color: Color.fromRGBO(0, 0, 0, 1),
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     const SizedBox(
@@ -69,13 +77,22 @@ class CustomCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          onPress();
+                        },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               btnText,
+                              style: TextStyle(
+                                  color: bgBtnColor == Colors.white
+                                      ? const Color.fromRGBO(8, 78, 140, 1)
+                                      : Colors.white,
+                                  fontFamily: "AlegreyaSans",
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
                             ),
                             if (isIcon)
                               const SizedBox(

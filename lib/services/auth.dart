@@ -5,14 +5,15 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
-import 'package:sampann_app/screen/home_with_sidebar.dart';
+import 'package:sampann_app/screen/dashboard/home_with_sidebar.dart';
 import 'package:sampann_app/screen/question_screen/KYC/kyc_screen.dart';
 import 'package:sampann_app/screen/chatbot/chatbot_work.dart';
-import 'package:sampann_app/screen/landing_screen.dart';
+import 'package:sampann_app/screen/authentication/landing_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 late Map mapResponse; //After quiz we are getting the map Response
 String token = '';
+bool newUser = false;
 // ---------Sign in with Google------\
 
 Future<UserCredential> signInWithGoogle() async {
@@ -70,7 +71,7 @@ sendSignUpData(
           {
             mapResponse = jsonDecode(value.body),
             token = mapResponse["new_access_token"],
-            print("body: ${mapResponse["new_access_token"]}"),
+            newUser = mapResponse["isNewUser"] == 1 ? true : false,
             saveToken(token),
             Get.to(() => const KYCScreen()),
           },
@@ -161,4 +162,9 @@ removeToken() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   // Remove data for the 'counter' key.
   await prefs.remove('token');
+}
+
+// ----------Remove token-------
+bool isNewUser() {
+  return newUser;
 }

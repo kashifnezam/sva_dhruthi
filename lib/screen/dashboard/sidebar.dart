@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sampann_app/screen/dashboard/Govt%20Benefit/govt_benefit.dart';
 import 'package:sampann_app/services/auth.dart';
-import 'package:sampann_app/screen/landing_screen.dart';
+import 'package:sampann_app/screen/authentication/landing_screen.dart';
 
 class Sidebar extends StatefulWidget {
   const Sidebar({super.key});
@@ -135,14 +136,20 @@ class _SidebarState extends State<Sidebar> {
               const SizedBox(
                 height: 25,
               ),
-              Text(
-                "Know Govt Benefits",
-                style: GoogleFonts.inter(
-                    textStyle: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                  color: Color.fromRGBO(255, 255, 255, 1),
-                )),
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => const GovtBenfit());
+
+                },
+                child: Text(
+                  "Know Govt Benefits",
+                  style: GoogleFonts.inter(
+                      textStyle: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                  )),
+                ),
               ),
               const SizedBox(
                 height: 25,

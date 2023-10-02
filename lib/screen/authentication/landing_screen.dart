@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sampann_app/services/auth.dart';
-import 'package:sampann_app/screen/bottom_navigation.dart';
+import 'package:sampann_app/screen/dashboard/bottom_navigation.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
