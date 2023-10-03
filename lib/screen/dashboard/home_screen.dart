@@ -3,6 +3,10 @@ import 'package:get/get.dart';
 import 'package:sampann_app/items/card.dart';
 import 'package:sampann_app/items/exercises.dart';
 import 'package:sampann_app/screen/chatbot/chatbot_loading.dart';
+import 'package:sampann_app/screen/dashboard/Food/avocado_toast.dart';
+import 'package:sampann_app/screen/dashboard/Govt%20Benefit/govt_benefit.dart';
+import 'package:sampann_app/screen/dashboard/Govt%20Benefit/holistic_vyayaama.dart';
+import 'package:sampann_app/screen/question_screen/Quiz/quiz.dart';
 import 'package:sampann_app/services/auth.dart';
 import 'bottom_navigation.dart';
 
@@ -290,7 +294,9 @@ class _HomePageState extends State<HomePage> {
                   ],
                 )
               :
-              // HomePage for Old User
+
+              //------------------------ HomePage for Old User------------------
+
               ListView(
                   physics: const BouncingScrollPhysics(),
                   padding: const EdgeInsets.only(top: 44, left: 29, right: 24),
@@ -432,7 +438,9 @@ class _HomePageState extends State<HomePage> {
                       bgBtnColor: const Color.fromRGBO(8, 78, 140, 1),
                       btnText: "Take a Quiz",
                       isIcon: false,
-                      onPress: () {},
+                      onPress: () {
+                        Get.to(() => const QuizScreen());
+                      },
                     ),
                     const SizedBox(
                       height: 20,
@@ -455,7 +463,9 @@ class _HomePageState extends State<HomePage> {
                       bgBtnColor: Colors.white,
                       btnText: "Check it out!",
                       isIcon: false,
-                      onPress: () {},
+                      onPress: () {
+                        Get.to(() => const HolisticVyayaama());
+                      },
                     ),
                     const SizedBox(
                       height: 20,
@@ -469,7 +479,9 @@ class _HomePageState extends State<HomePage> {
                       bgBtnColor: const Color.fromRGBO(252, 215, 76, 1),
                       btnText: "Check it out!",
                       isIcon: false,
-                      onPress: () {},
+                      onPress: () {
+                        Get.to(() => const AvocadoToast());
+                      },
                     ),
                     const SizedBox(
                       height: 20,
@@ -484,11 +496,11 @@ class _HomePageState extends State<HomePage> {
                         ),
                         elevation: 0.5,
                         color: const Color.fromRGBO(162, 244, 255, 1),
-                        child: const Padding(
-                          padding: EdgeInsets.all(25),
+                        child: Padding(
+                          padding: const EdgeInsets.all(25),
                           child: Row(
                             children: [
-                              Expanded(
+                              const Expanded(
                                 child: Padding(
                                   padding: EdgeInsets.only(right: 20.0),
                                   child: Column(
@@ -518,13 +530,16 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ),
-                              CircleAvatar(
-                                radius: 15,
-                                backgroundColor: Colors.white,
-                                child: Icon(
-                                  Icons.arrow_forward_outlined,
-                                  size: 20,
-                                  color: Colors.black,
+                              InkWell(
+                                onTap: () => Get.to(() => const GovtBenfit()),
+                                child: const CircleAvatar(
+                                  radius: 15,
+                                  backgroundColor: Colors.white,
+                                  child: Icon(
+                                    Icons.arrow_forward_outlined,
+                                    size: 20,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               )
                             ],
