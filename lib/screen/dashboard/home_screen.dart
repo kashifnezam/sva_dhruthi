@@ -8,6 +8,7 @@ import 'package:sampann_app/screen/dashboard/Govt%20Benefit/govt_benefit.dart';
 import 'package:sampann_app/screen/dashboard/Govt%20Benefit/holistic_vyayaama.dart';
 import 'package:sampann_app/screen/question_screen/Quiz/quiz.dart';
 import 'package:sampann_app/services/auth.dart';
+import 'package:sampann_app/services/tools.dart';
 import 'bottom_navigation.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,9 +23,12 @@ bool isSidebar = false;
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    if (isSidebar) {
+      bottomSystemColor(color: const Color.fromRGBO(8, 78, 140, 1));
+    }
     return AnimatedContainer(
       transform: isSidebar
-          ? Matrix4.translationValues(290, 180, 1)
+          ? Matrix4.translationValues(Get.width * 0.76, Get.height * 0.19, 1)
           : Matrix4.translationValues(0, 0, 1)
         ..scale(isSidebar ? 0.72 : 1.00),
       duration: const Duration(milliseconds: 400),
@@ -298,7 +302,9 @@ class _HomePageState extends State<HomePage> {
               //------------------------ HomePage for Old User------------------
 
               ListView(
-                  physics: const BouncingScrollPhysics(),
+                  physics: !isSidebar
+                      ? const BouncingScrollPhysics()
+                      : const NeverScrollableScrollPhysics(),
                   padding: const EdgeInsets.only(top: 44, left: 29, right: 24),
                   children: [
                     //  --------- Title Bar ---------------

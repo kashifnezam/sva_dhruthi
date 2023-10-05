@@ -73,20 +73,22 @@ class _SplashScreenState extends State<SplashScreen> {
             alignment: Alignment.bottomCenter,
             children: [
               Container(
-                height: 435,
+                height: Get.height * 0.51,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
-                        'assets/icons/BGCircle.png'), // Replace with your image path
+                      'assets/icons/BGCircle1.png',
+                    ), // Replace with your image path
                     fit: BoxFit.cover,
                     // This ensures the image covers the entire body
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Image(
-                  image: AssetImage("assets/icons/logoS.png"),
+                  height: Get.height * 0.33,
+                  image: const AssetImage("assets/icons/logoS.png"),
                 ),
               )
             ],

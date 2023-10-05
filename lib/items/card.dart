@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:sampann_app/screen/dashboard/old_homescreen.dart';
 
 class CustomCard extends StatelessWidget {
   final String title;

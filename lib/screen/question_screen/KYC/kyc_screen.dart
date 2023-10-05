@@ -200,9 +200,10 @@ class _KYCScreenState extends State<KYCScreen> {
                           optionIndexKYC = 22;
                         } else {
                           // sendQuizData(myKYCResult);
+
+                          Get.to(() => const HomeWithSideBar());
                           optionIndexKYC = 0;
                           quesIndexKYC = 0;
-                          Get.to(() => const HomeWithSideBar());
                         }
                       });
                     },

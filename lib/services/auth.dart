@@ -134,18 +134,18 @@ getBotResponse({required String msg}) async {
           {
             if (FirebaseAuth.instance.currentUser != null)
               {
-                Get.off(() => const HomeWithSideBar()),
+                Get.offAll(() => const HomeWithSideBar()),
               }
             else
               {
-                Get.off(() => const LandingScreen()),
+                Get.offAll(() => const LandingScreen()),
               }
           }
       },
     );
   } catch (e) {
     debugPrint("Problem: $e");
-    Get.off(
+    Get.offAll(
       () => const LandingScreen(),
     );
   }
